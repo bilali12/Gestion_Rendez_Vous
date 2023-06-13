@@ -50,7 +50,7 @@
             <div class="sidebar pe-4 pb-3">
                 <nav class="navbar bg-secondary navbar-dark">
                     <a href="#" class="navbar-brand mx-4 mb-3">
-                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Sama School</h3>
+                        <h4 class="text-primary">ADMINISTRATEUR</h4>
                     </a>
                     <div class="d-flex align-items-center ms-4 mb-4">
                         <div class="position-relative">
@@ -62,22 +62,46 @@
                         </div>
                         <div class="ms-3">
                             <h6 class="mb-0"></h6>
-                            <span>Admin</span>
+                            <span><a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a></span>
                         </div>
                     </div>
                     <div class="navbar-nav w-100">
-                        
+
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                    class="fa fa-keyboard me-2"></i>Formulaires</a>
+                                    class="fa fa-keyboard me-2"></i>Medecin</a>
                             <div class="dropdown-menu bg-transparent border-0">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                    class="fa fa-keyboard me-2"></i>Ajouter Medecin</a>
 
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                    class="fa fa-table me-2"></i>Affichages</a>
+                                    class="fa fa-keyboard me-2"></i>Secretaire</a>
                             <div class="dropdown-menu bg-transparent border-0">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                    class="fa fa-keyboard me-2"></i>Ajouter Secretaire</a>
+
+                            </div>
+                        </div>
+
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                    class="fa fa-table me-2"></i>Deconnexion</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Se Deconnecter') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
 
                             </div>
                         </div>
@@ -97,7 +121,7 @@
                         <i class="fa fa-bars"></i>
                     </a>
                     <div class="navbar-nav align-items-center ms-auto">
-                        <div class="nav-item dropdown">
+                        {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                                 <img class="rounded-circle me-lg-2" src="{{asset('back/img/user.jpg')}}" alt=""
                                     style="width: 40px; height: 40px;">
@@ -107,23 +131,24 @@
                                 class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
 
                             </div>
-                        </div>
+                        </div> --}}
+
                     </div>
                 </nav>
                 @yield('contenu')
 
                 <!-- Sales Chart End -->
                 <!-- Footer Start -->
-                <div class="container-fluid pt-4 px-4">
+                {{-- <div class="container-fluid pt-4 px-4">
                     <div class="bg-secondary rounded-top p-4">
                         <div class="row">
                             <div class="col-12 col-sm-6 text-center text-sm-start">
-                                &copy; <a href="#">SamaSchool</a>, All Right Reserved.
+                                &copy; <a href="#">Hopital</a>, All Right Reserved.
                             </div>
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Footer End -->
             </div>
 

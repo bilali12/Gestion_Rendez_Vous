@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('admin')->group(function() {
     //route accessible a l'admin
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
+    // Route::post('/admin/createmedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
+    // Route::get('/admin/create', [AdminController::class, 'show']);
+
 });
 Route::middleware('medecin')->group(function() {
     //route accessible au medecin
@@ -46,3 +49,5 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginFor
 Route::get('/login2', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login2');
 // Route::get('/', [AdminController::class, 'index']);
 // Route::post('/login', [LoginController::class, 'login']);
+Route::post('/admin/createmedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
+Route::get('/admin/create', [AdminController::class, 'essai']);
