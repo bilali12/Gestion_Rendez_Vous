@@ -81,8 +81,8 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                     class="fa fa-keyboard me-2"></i>Secretaire</a>
                             <div class="dropdown-menu bg-transparent border-0">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                    class="fa fa-keyboard me-2"></i>Ajouter Secretaire</a>
+                                <a href="{{route('admin.createsecretaire')}}" class="nav-link dropdown-toggle"><i
+                                ></i>Ajouter Secretaire</a>
 
                             </div>
                         </div>
