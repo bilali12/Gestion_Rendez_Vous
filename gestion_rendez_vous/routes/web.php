@@ -38,9 +38,9 @@ Route::middleware('secretaire')->group(function() {
 });
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/accueil', function () {
+    return view('lifecare-master.index');
+});
 
 Auth::routes();
 
