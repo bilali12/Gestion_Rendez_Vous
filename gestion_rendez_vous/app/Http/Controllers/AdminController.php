@@ -37,10 +37,12 @@ class AdminController extends Controller
      */
     public function createMedecin(array $data)
     {
+        // dd($data['role']);
+        $data['role'] = "1";
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'role' => '1',
+            'role' => $data['role'],
             'password' => Hash::make('password'),
         ]);
     }
@@ -68,7 +70,7 @@ class AdminController extends Controller
         // return $request->wantsJson()
         //             ? new JsonResponse([], 201)
         //             : redirect($this->redirectPath());
-        return redirect('/admin/create')->with('flash_message', 'etudiant ajouté');
+        return redirect('/admin/dashboard')->with('flash_message', 'medecin ajouté');
     }
     public function storeSecretaire(Request $request)
     {
