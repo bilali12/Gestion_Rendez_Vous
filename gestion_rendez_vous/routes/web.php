@@ -26,6 +26,8 @@ Route::middleware('admin')->group(function() {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
     // Route::post('/admin/createmedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
     // Route::get('/admin/create', [AdminController::class, 'show']);
+    Route::post('/admin/storemedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
+    Route::get('/admin/createmedecin', [AdminController::class, 'essai'])->name('admin.createmedecin');
 
 });
 Route::middleware('medecin')->group(function() {
@@ -49,5 +51,4 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginFor
 Route::get('/login2', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login2');
 // Route::get('/', [AdminController::class, 'index']);
 // Route::post('/login', [LoginController::class, 'login']);
-Route::post('/admin/createmedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
-Route::get('/admin/create', [AdminController::class, 'essai']);
+

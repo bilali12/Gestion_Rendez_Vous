@@ -73,9 +73,8 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                     class="fa fa-keyboard me-2"></i>Medecin</a>
                             <div class="dropdown-menu bg-transparent border-0">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                <a href=" {{route('admin.createmedecin')}}" class="nav-link dropdown-toggle"><i
                                     class="fa fa-keyboard me-2"></i>Ajouter Medecin</a>
-
                             </div>
                         </div>
                         <div class="nav-item dropdown">
