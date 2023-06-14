@@ -23,13 +23,29 @@
                                 <tr class="text-white">
                                     <th scope="col">Nom complet</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Spécialité</th>
+                                    <th scope="col">Statut</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach ($users as $user)
+                                @if($user->role == "1")
+                                <tr>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>Medecin</td>
+                                    <td>
+                                        {{-- <form action="{{ route('users.destroy', $user->id) }}" method="Post"> --}}
+                                            {{-- <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a> --}}
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        {{-- </form> --}}
+                                    </td>
+                                </tr>
+                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -46,19 +62,41 @@
                                 <tr class="text-white">
                                     <th scope="col">Nom complet</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Spécialité</th>
+                                    <th scope="col">Statut</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($users as $user)
+                                @if($user->role == "2")
+                                <tr>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>Secretaire</td>
+                                    <td>
+                                        {{-- <form action="{{ route('users.destroy', $user->id) }}" method="Post"> --}} --}}
+                                            {{-- <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a> --}} --}}
+                                            {{-- @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button> --}}
+                                        {{-- </form>  --}}
 
+                                        {{-- <a href="{{ route('update',$user->id)}}" class="btn btn-warning">✍🏽</a> --}}
+                                        {{-- <form method="POST" action="{{ route('user.destroy',$user->id)}}" accept-charset="UTF-8" style="display:inline">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()" title="Supprimer Region"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button> --}}
+                                    </td>
+                                </tr>
+                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 @endsection

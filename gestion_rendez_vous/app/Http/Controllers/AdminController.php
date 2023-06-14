@@ -19,9 +19,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $medecins = Medecin::all();
-        $secretaires = Secretaire::all();
-        return view('admin.dashboard')->with(compact('medecins', 'secretaires'));
+        $users = User::all();
+        return view('admin.dashboard')->with(compact('users'));
     }
     protected function validator(array $data)
     {
@@ -46,9 +45,15 @@ class AdminController extends Controller
             'password' => Hash::make('password'),
         ]);
     }
-    public function createSecretaire()
+    public function createSecretaire(array $data)
     {
-        //
+        $data['role'] = "2";
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'role' => $data['role'],
+            'password' => Hash::make('password'),
+        ]);
     }
 
     /**
@@ -74,19 +79,37 @@ class AdminController extends Controller
     }
     public function storeSecretaire(Request $request)
     {
-        $secretaire = new Secretaire();
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->createSecretaire($request->all())));
+
+
+        //$this->guard()->login($user);
+
+        // if ($response = $this->registered($request, $user)) {
+        //     return $response;
+        // }
+
+        // return $request->wantsJson()
+        //             ? new JsonResponse([], 201)
+        //             : redirect($this->redirectPath());
+        return redirect('/admin/dashboard')->with('flash_message', 'secretaire ajouté');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('user.show',compact('user'));
     }
-    public function essai()
+    public function createMed()
     {
         return view('admin.createmedecin');
+    }
+    public function createSec()
+    {
+        return view('admin.createsecretaire');
     }
     protected function guard()
     {
@@ -96,24 +119,41 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+
+        ]);
+
+        $user->fill($request->post())->save();
+
+        return redirect()->route('admin.index')->with('success','Company Has Been updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    // public function destroy(User $user)
+    // {
+    //     $user->delete();
+    //     return redirect()->route('admin.index')->with('success','Company has been deleted successfully');
+    // }
+
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin.index')->with('success', 'suppression fait avec succes');
     }
 }

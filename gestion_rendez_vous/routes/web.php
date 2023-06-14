@@ -24,10 +24,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('admin')->group(function() {
     //route accessible a l'admin
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
-    // Route::post('/admin/createmedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
-    // Route::get('/admin/create', [AdminController::class, 'show']);
+
+    //medecin
     Route::post('/admin/storemedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
-    Route::get('/admin/createmedecin', [AdminController::class, 'essai'])->name('admin.createmedecin');
+    Route::get('/admin/createmedecin', [AdminController::class, 'createMed'])->name('admin.createmedecin');
+
+    //secretaire
+    Route::post('/admin/storesecretaire', [AdminController::class, 'storeSecretaire'])->name('admin.secretaire');
+    Route::get('/admin/createsecretaire', [AdminController::class, 'createSec'])->name('admin.createsecretaire');
+    // Route::resource('users', AdminController::class);
+    // Route::delete('/delete{id}', [AdminController::class, 'destroy'])->name('user.destroy');
 
 });
 Route::middleware('medecin')->group(function() {
