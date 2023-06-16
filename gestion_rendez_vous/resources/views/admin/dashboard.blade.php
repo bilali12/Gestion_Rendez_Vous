@@ -36,12 +36,13 @@
                                     <td>{{$user->email}}</td>
                                     <td>Medecin</td>
                                     <td>
-                                        {{-- <form action="{{ route('users.destroy', $user->id) }}" method="Post"> --}}
-                                            {{-- <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a> --}}
-                                            @csrf
+                                         <form action="{{ route('users.destroy',$user->id) }}" method="Post">
+                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
-                                        {{-- </form> --}}
+                                        </form>
+
+
                                     </td>
                                 </tr>
                                 @endif
@@ -75,19 +76,14 @@
                                     <td>{{$user->email}}</td>
                                     <td>Secretaire</td>
                                     <td>
-                                        {{-- <form action="{{ route('users.destroy', $user->id) }}" method="Post"> --}} --}}
-                                            {{-- <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a> --}} --}}
-                                            {{-- @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button> --}}
-                                        {{-- </form>  --}}
+                                        <form action="{{ route('users.destroy',$user->id) }}" method="Post">
+                                            @csrf
+                                           @method('DELETE')
+                                           <button type="submit" class="btn btn-danger">Delete</button>
+                                       </form>
 
-                                        {{-- <a href="{{ route('update',$user->id)}}" class="btn btn-warning">✍🏽</a> --}}
-                                        {{-- <form method="POST" action="{{ route('user.destroy',$user->id)}}" accept-charset="UTF-8" style="display:inline">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()" title="Supprimer Region"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button> --}}
-                                    </td>
+
+                                   </td>
                                 </tr>
                                 @endif
                                 @endforeach
