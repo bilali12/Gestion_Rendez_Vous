@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,13 +31,14 @@ class HomeController extends Controller
 
             if ($user->role == '0') {
                 // Logique spécifique pour l'administrateur
-                return view('admin.dashboard');
+                $users = User::all();
+                return view('admin.dashboard')->with(compact('users'));
             } elseif ($user->role == '1') {
                 // Logique spécifique pour le médecin
                 return view('medecin.index');
             } elseif ($user->role == '2') {
                 // Logique spécifique pour la secrétaire
-                return view('secretaire.index');
+                return view('secretaire.dashboard');
             }
         }
 

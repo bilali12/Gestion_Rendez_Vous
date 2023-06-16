@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\secretaireController;
 use App\Http\Controllers\MedecinController;
-use App\Http\Controllers\SecretaireController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,23 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::prefix('admin')->middleware('auth')->group(function() {
-//     Route::get('/index', [AdminController::class, 'index'])->name('admin.index');
+// Route::prefix('secretaire')->middleware('auth')->group(function() {
+//     Route::get('/index', [secretaireController::class, 'index'])->name('secretaire.index');
 // });
 
 Route::middleware('admin')->group(function() {
-    //route accessible a l'admin
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
+    //route accessible a l'secretaire
+    Route::get('/admin/dashboard', [secretaireController::class, 'index'])->name('admin.index');
 
     //medecin
-    Route::post('/admin/storemedecin', [AdminController::class, 'storeMedecin'])->name('admin.medecin');
-    Route::get('/admin/createmedecin', [AdminController::class, 'createMed'])->name('admin.createmedecin');
+    Route::post('/admin/storemedecin', [secretaireController::class, 'storeMedecin'])->name('admin.medecin');
+    Route::get('/admin/createmedecin', [secretaireController::class, 'createMed'])->name('admin.createmedecin');
 
     //secretaire
-    Route::post('/admin/storesecretaire', [AdminController::class, 'storeSecretaire'])->name('admin.secretaire');
-    Route::get('/admin/createsecretaire', [AdminController::class, 'createSec'])->name('admin.createsecretaire');
-    // Route::resource('users', AdminController::class);
-    // Route::delete('/delete{id}', [AdminController::class, 'destroy'])->name('user.destroy');
+    Route::post('/admin/storesecretaire', [secretaireController::class, 'storeSecretaire'])->name('admin.secretaire');
+    Route::get('/admin/createsecretaire', [secretaireController::class, 'createSec'])->name('admin.createsecretaire');
+    // Route::resource('users', secretaireController::class);
+    // Route::delete('/delete{id}', [secretaireController::class, 'destroy'])->name('user.destroy');
+    Route::delete('/supprimer{id}', [secretaireController::class, 'destroy'])->name('users.destroy');
 
 });
 Route::middleware('medecin')->group(function() {
@@ -42,7 +43,11 @@ Route::middleware('medecin')->group(function() {
 });
 Route::middleware('secretaire')->group(function() {
     //route accessible au secretaire
-    Route::get('/secretaire/index', [SecretaireController::class, 'index'])->name('secretaire.index');
+    Route::get('/secretaire/dashboard', [SecretaireController::class, 'index'])->name('secretaire.index');
+
+    Route::post('/secretaire/store', [SecretaireController::class, 'store'])->name('secretaire.patient');
+    Route::get('/secretaire/create', [SecretaireController::class, 'create'])->name('secretaire.createPatient');
+
 });
 
 
@@ -53,8 +58,11 @@ Route::middleware('secretaire')->group(function() {
 Auth::routes();
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('loginpage');
+Route::get('/loginp', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('loginpage');
 Route::get('/login2', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login2');
-// Route::get('/', [AdminController::class, 'index']);
+Route::get('/', function () {
+    return view('lifecare-master.index');
+});
+// Route::get('/', [secretaireController::class, 'index']);
 // Route::post('/login', [LoginController::class, 'login']);
 
