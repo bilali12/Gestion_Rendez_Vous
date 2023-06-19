@@ -1,4 +1,4 @@
-@extends('layouts.appsec')
+@extends('layouts.appmed')
 @section('title')
     Dashboard
 @endsection
@@ -15,21 +15,17 @@
             <div class="col-sm-12 col-xl-12">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h3 class=" text-center">Liste Des Rendez-vous</h3>
+                        <h3 class=" text-center">Mes Rendez-Vous</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
                                     <th class="text-center">Patient</th>
-                                    <th class="text-center">Medecin</th>
                                     <th class="text-center">Date</th>
                                     <th class="text-center">Heure Debut</th>
                                     <th class="text-center">Heure</th>
                                     <th class="text-center">Etat</th>
-                                    <th class="text-center">Action</th>
-                                    <th class="text-center">Action</th>
-
                                 </tr>
                             </thead>
                             <tbody>

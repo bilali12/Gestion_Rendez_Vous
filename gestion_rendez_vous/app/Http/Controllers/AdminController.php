@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Medecin;
 use App\Models\Secretaire;
+use App\Models\TimeSlots;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
@@ -20,7 +21,8 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.dashboard')->with(compact('users'));
+        $timeSlots = TimeSlots::all();
+        return view('admin.dashboard')->with(compact('users', 'timeSlots'));
     }
     protected function validator(array $data)
     {
@@ -36,14 +38,39 @@ class AdminController extends Controller
      */
     public function createMedecin(array $data)
     {
-        // dd($data['role']);
+       // dd($data['role']);
         $data['role'] = "1";
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role' => $data['role'],
-            'password' => Hash::make('password'),
-        ]);
+        if($data['role'] = "1"){
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'role' => $data['role'],
+                'password' => Hash::make('password'),
+            ]);
+        }
+    //     $data['role'] = "1";
+    // $password = 'password'; // Définir le mot de passe souhaité ici
+
+    // $user = User::create([
+    //     'name' => $data['name'],
+    //     'email' => $data['email'],
+    //     'role' => $data['role'],
+    //     'password' => Hash::make($password),
+    // ]);
+
+    // if ($data['role'] == '1') {
+    //     $medecin = new Medecin([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($password),
+    //         // Autres champs spécifiques au médecin
+    //     ]);
+
+    //     $user->medecins()->save($medecin);
+    // }
+
+    // return $user;
+
     }
     public function createSecretaire(array $data)
     {
