@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TimeSlots;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,11 @@ class HomeController extends Controller
             if ($user->role == '0') {
                 // Logique spécifique pour l'administrateur
                 $users = User::all();
-                return view('admin.dashboard')->with(compact('users'));
+                $timeSlots = TimeSlots::all();
+                return view('admin.dashboard')->with(compact('users', 'timeSlots'));
             } elseif ($user->role == '1') {
                 // Logique spécifique pour le médecin
-                return view('medecin.index');
+                return view('medecin.dashboard');
             } elseif ($user->role == '2') {
                 // Logique spécifique pour la secrétaire
                 return view('secretaire.dashboard');

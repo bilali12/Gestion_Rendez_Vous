@@ -86,6 +86,15 @@
 
                             </div>
                         </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                    class="fa fa-keyboard me-2"></i>Dispo Medecin</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="{{route('admin.createdispo')}}" class="nav-link dropdown-toggle"><i
+                                ></i>Ajouter</a>
+                                
+                            </div>
+                        </div>
 
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i

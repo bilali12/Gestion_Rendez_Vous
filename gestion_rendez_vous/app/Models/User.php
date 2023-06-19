@@ -59,4 +59,9 @@ class User extends Authenticatable
         return $this->role == '2';
     }
 
+    public function medecins()
+    {
+        return $this->hasMany(Medecin::class, 'user_id');
+    }
+
 }

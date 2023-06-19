@@ -28,16 +28,10 @@ class SecretaireController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function createPatient(array $data)
+    public function createRendezVous()
     {
         // dd($data['role']);
-        $data['role'] = "1";
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role' => $data['role'],
-            'password' => Hash::make('password'),
-        ]);
+        return view('secretaire.createrendezvous');
     }
 
 

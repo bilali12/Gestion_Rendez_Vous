@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('medecins', function (Blueprint $table) {
             $table->id();
-            $table->integer('matricule_medecin');
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->string('mot_de_pass');
-            $table->timestamps();
-        });
+        $table->unsignedBigInteger('user_id');
+        // Ajoutez ici les autres colonnes spécifiques aux médecins
+        $table->timestamps();
+
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });
+    
     }
 
     /**
